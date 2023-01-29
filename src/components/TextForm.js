@@ -9,6 +9,7 @@ export default function TextForm(props) {
     const [Text, setText] = useState("")
     const HandleClearText= ()=>{
         setText("")
+        props.showalert("Cleared Text !!", "success")
     }
     const HandleUpperCaseClick = () => {
         // console.log("Upper case executed")
@@ -16,6 +17,7 @@ export default function TextForm(props) {
 
         let newText = Text.toUpperCase()
         setText(newText)
+        props.showalert("Text Converted to the UpperCase Successfully", "success")
     }
 
     const handleCopy= ()=>{
@@ -23,10 +25,12 @@ export default function TextForm(props) {
         text.select()
         console.log(text);
         navigator.clipboard.writeText(text.value)
+        props.showalert("Copied to Clipboard Successfully!!", "success")
     }
     const HandleLowerCaseClick = () => {
         let newText = Text.toLowerCase();
         setText(newText)
+        props.showalert("Text Converted to Lower Case Successfully", "success")
     }
     const handleOnChange = (event) => {
         // console.log("handle onchanged function exectued")
