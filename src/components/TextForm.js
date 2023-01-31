@@ -7,7 +7,7 @@ export default function TextForm(props) {
     // setText("To change the text") // right way to change the given text..
 
     const [Text, setText] = useState("")
-    const HandleClearText= ()=>{
+    const HandleClearText = () => {
         setText("")
         props.showalert("Cleared Text !!", "success")
     }
@@ -20,11 +20,11 @@ export default function TextForm(props) {
         props.showalert("Text Converted to the UpperCase Successfully", "success")
     }
 
-    const handleCopy= ()=>{
-        let text= document.getElementById('mytextForm')
+    const handleCopy = () => {
+        let text = document.getElementById('mytextForm')
         text.select()
-        console.log(text);
         navigator.clipboard.writeText(text.value)
+        document.getSelection().removeAllRanges()
         props.showalert("Copied to Clipboard Successfully!!", "success")
     }
     const HandleLowerCaseClick = () => {
@@ -36,30 +36,39 @@ export default function TextForm(props) {
         // console.log("handle onchanged function exectued")
         setText(event.target.value) // we have to use this event.target.value to change the value in the given text Box feild etc.
     }
-    const colorModeofText= {
-        color:`${props.mode==='white'?'dark':'white'}`
-    }
     return (
         <>
             <div className="container">
 
-                <h1 className={`text-${props.mode==='light'?'dark':'light'}`}>{props.heading}</h1>
+                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'} mb-4 mt-2 `}>{props.heading}</h1>
                 <form>
                     <div className="form-group">
-                        <textarea className="form-control" value={Text} id="mytextForm" style={{backgroundColor:props.mode==='light'?'white':'#01203f', color:props.mode==='light'?'black':'white'}} onChange={handleOnChange} rows="8"></textarea>
+                        <textarea className="form-control" value={Text} id="mytextForm" style={{ backgroundColor: props.mode === 'light' ? 'white' : '#2e4f71', color: props.mode === 'light' ? 'black' : 'white' }} onChange={handleOnChange} rows="8"></textarea>
                     </div>
-                    <button type='button' className="btn btn-primary mt-2 me-3" onClick={HandleUpperCaseClick}>Convert to UpperCase</button>
-                    <button type='button' className="btn btn-danger mt-2 me-3" onClick={HandleLowerCaseClick}>Convert to LowerCase</button>
-                    <button type='button' className="btn btn-success me-3 mt-2" onClick={HandleClearText}>Clear Text</button>
-                    <button type='button' className="btn btn-danger me-3 mt-2" onClick={handleCopy}>Copy Text To the clip Board</button>
+                    <button disabled={Text.split(" ").filter((element)=>{
+                        return element.length!==0;
+                    }).length===0} type='button' className="btn btn-primary mt-3 me-3" onClick={HandleUpperCaseClick}>Convert to UpperCase</button>
+                    <button disabled={Text.split(" ").filter((element)=>{
+                        return element.length!==0;
+                    }).length===0} type='button' className="btn btn-danger mt-3 me-3" onClick={HandleLowerCaseClick}>Convert to LowerCase</button>
+                    <button disabled={Text.split(" ").filter((element)=>{
+                        return element.length!==0;
+                    }).length===0} type='button' className="btn btn-success me-3 mt-3" onClick={HandleClearText}>Clear Text</button>
+                    <button disabled={Text.split(" ").filter((element)=>{
+                        return element.length!==0;
+                    }).length===0} type='button' className="btn btn-danger me-3 mt-3" onClick={handleCopy}>Copy Text To the clip Board</button>
                 </form>
             </div>
             <div className="container my-5">
-                <h1 className={`text-${props.mode==='light'?'dark':'light'}`}>Your text Summary</h1>
-                <p className={`wordCountClass text-${props.mode==='light'?'dark':'light'}`}>{Text.split(" ").indexOf("") === 0 ? 0 : Text.split(" ").length} Words and {Text.length} characters</p>
-                <p className={`wordCountClass text-${props.mode==='light'?'dark':'light'}`}>{Text.split(" ").indexOf("") === 0 ? 0 : Text.split(" ").length / 125} Minutes to read</p>
-                <h2 className={`text-${props.mode==='light'?'dark':'light'}`}>Preview of the Above text</h2>
-                <p className={`text-${props.mode==='light'?'dark':'light'}`}>{Text.length>0?Text:'Enter Something To Preview'}</p>
+                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Your text Summary</h1>
+                <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(" ").filter((element) => {
+                    return element.length !== 0;
+                }).length} Words and {Text.length} characters</p>
+                <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(" ").filter((element) => {
+                    return element.length !== 0;
+                }).length / 125} Minutes to read</p>
+                <h2 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Preview of the Above text</h2>
+                <p className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.length > 0 ? Text : 'Nothing To Preview'}</p>
             </div>
         </>
     )
