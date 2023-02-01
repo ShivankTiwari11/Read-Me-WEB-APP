@@ -58,14 +58,14 @@ export default function TextForm(props) {
                 </form>
             </div>
             <div className="container my-5">
-                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Your text Summary</h1>
+                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'} textHeadingClass`}>Your text Summary</h1>
                 <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(/\s+/).filter((element) => {
                     return element.length !== 0;
                 }).length} Words and {Text.length} characters</p>
                 <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(" ").filter((element) => {
                     return element.length !== 0;
                 }).length / 125} Minutes to read</p>
-                <h2 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Preview of the Above text</h2>
+                <h2 className={`text-${props.mode === 'light' ? 'dark' : 'light' } textHeadingClass`}>Preview of the Above text</h2>
                 <p className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.length > 0 ? Text : 'Nothing To Preview'}</p>
             </div>
         </>
