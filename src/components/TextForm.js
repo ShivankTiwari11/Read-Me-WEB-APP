@@ -21,9 +21,7 @@ export default function TextForm(props) {
     }
 
     const handleCopy = () => {
-        let text = document.getElementById('mytextForm')
-        text.select()
-        navigator.clipboard.writeText(text.value)
+        navigator.clipboard.writeText(Text)
         document.getSelection().removeAllRanges()
         props.showalert("Copied to Clipboard Successfully!!", "success")
     }
@@ -40,28 +38,28 @@ export default function TextForm(props) {
         <>
             <div className="container">
 
-                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'} mb-4 mt-2 `}>{props.heading}</h1>
+                <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'} mb-4 mt-2 textHeadingClass`}>{props.heading}</h1>
                 <form>
                     <div className="form-group">
                         <textarea className="form-control" value={Text} id="mytextForm" style={{ backgroundColor: props.mode === 'light' ? 'white' : '#2e4f71', color: props.mode === 'light' ? 'black' : 'white' }} onChange={handleOnChange} rows="8"></textarea>
                     </div>
                     <button disabled={Text.split(" ").filter((element)=>{
                         return element.length!==0;
-                    }).length===0} type='button' className="btn btn-primary mt-3 me-3" onClick={HandleUpperCaseClick}>Convert to UpperCase</button>
+                    }).length===0} type='button' className="btn btn-primary mt-3 me-3" onClick={HandleUpperCaseClick}><strong>Convert to UpperCase</strong></button>
                     <button disabled={Text.split(" ").filter((element)=>{
                         return element.length!==0;
-                    }).length===0} type='button' className="btn btn-danger mt-3 me-3" onClick={HandleLowerCaseClick}>Convert to LowerCase</button>
+                    }).length===0} type='button' className="btn btn-danger mt-3 me-3" onClick={HandleLowerCaseClick}><strong>Convert to LowerCase</strong></button>
                     <button disabled={Text.split(" ").filter((element)=>{
                         return element.length!==0;
-                    }).length===0} type='button' className="btn btn-success me-3 mt-3" onClick={HandleClearText}>Clear Text</button>
+                    }).length===0} type='button' className="btn btn-success me-3 mt-3" onClick={HandleClearText}><strong>Clear Text</strong></button>
                     <button disabled={Text.split(" ").filter((element)=>{
                         return element.length!==0;
-                    }).length===0} type='button' className="btn btn-danger me-3 mt-3" onClick={handleCopy}>Copy Text To the clip Board</button>
+                    }).length===0} type='button' className="btn btn-danger me-3 mt-3" onClick={handleCopy}><strong>Copy Text to the ClipBoard</strong></button>
                 </form>
             </div>
             <div className="container my-5">
                 <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Your text Summary</h1>
-                <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(" ").filter((element) => {
+                <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(/\s+/).filter((element) => {
                     return element.length !== 0;
                 }).length} Words and {Text.length} characters</p>
                 <p className={`wordCountClass text-${props.mode === 'light' ? 'dark' : 'light'}`}>{Text.split(" ").filter((element) => {
