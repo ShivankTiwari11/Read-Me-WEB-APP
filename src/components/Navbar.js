@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 export default function Navbar(props) {
     // this css is all for the navbar okkk.
