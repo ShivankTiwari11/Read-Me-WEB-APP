@@ -35,11 +35,11 @@ function App() {
 
     <div className="App" >
 
-      <Navbar title="TextUtils" mode={darkMode} toggleMode={handleDarkMode} />
+      <Navbar title="Read ME" mode={darkMode} toggleMode={handleDarkMode} />
       <Alert alert={alert} />
       <div className="container my-3">
 
-        <TextForm showalert= {showAlert} alert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Copy the text " mode={darkMode} />
+        <TextForm showalert= {showAlert} alert={showAlert} heading="Try Read ME - Word Counter, Character Counter, Copy the text " mode={darkMode} />
       </div>
     </div>
   );
