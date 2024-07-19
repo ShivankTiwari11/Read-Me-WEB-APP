@@ -15,4 +15,4 @@ npm start
 **Note:- Make Sure that you have node.js, git bash installed in your computer before running these commands.**
 
 ## Here is the live Preview of my project
-**[Live Preview](https://manan-textutil.netlify.app/)**
+**[Live Preview](https://readmewebapp.netlify.app/)**
